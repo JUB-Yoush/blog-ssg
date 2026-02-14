@@ -95,6 +95,7 @@ func parseMarkdownPosts() (posts []*Post) {
 func main() {
 	rootPath := "public"
 	blogPath := "public/blog"
+	aboutPath := "public/about"
 	staticPath := "static"
 
 	// wipe public folder
@@ -129,10 +130,32 @@ func main() {
 			log.Fatalf("failed to write output file: %v", err)
 		}
 	}
-
+	// TODO this could be automated somewhat
 	name := path.Join(rootPath, "index.html")
 	f, err := os.Create(name)
-	err = boilerplate(homeContent(), "ekekek").Render(context.Background(), f)
+	err = boilerplate(homeContent(), "", "").Render(context.Background(), f)
+	if err != nil {
+		log.Fatalf("failed to create output file: %v", err)
+	}
+
+	if err := os.Mkdir(aboutPath, 0755); err != nil {
+		log.Fatalf("failed to create output directory: %v", err)
+	}
+
+	name = path.Join(rootPath, "about", "index.html")
+	f, err = os.Create(name)
+	err = boilerplate(aboutContent(), "", "../").Render(context.Background(), f)
+	if err != nil {
+		log.Fatalf("failed to create output file: %v", err)
+	}
+
+	if err := os.Mkdir("public/resume", 0755); err != nil {
+		log.Fatalf("failed to create output directory: %v", err)
+	}
+
+	name = path.Join(rootPath, "resume", "index.html")
+	f, err = os.Create(name)
+	err = boilerplate(resumeContent(), "", "../").Render(context.Background(), f)
 	if err != nil {
 		log.Fatalf("failed to create output file: %v", err)
 	}

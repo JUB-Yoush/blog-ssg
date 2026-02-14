@@ -1,6 +1,6 @@
 package main
 
-templ boilerplate(content templ.Component, viewClass string){
+templ boilerplate(content templ.Component, viewClass string, pathToRoot string){
 <style>
 	:global(*) {
 		background-color: var(--background-color);
@@ -50,7 +50,7 @@ templ boilerplate(content templ.Component, viewClass string){
 		width: 80vw;
 		max-width: 1200px;
 	}
-	body > span {
+	div > span {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -93,7 +93,10 @@ templ boilerplate(content templ.Component, viewClass string){
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>HTML 5 Boilerplate</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href={pathToRoot +"css/main.css"} />
+  <link rel="stylesheet" href="css/font.css" />
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/code.css" />
 </head>
 
 
@@ -101,14 +104,14 @@ templ boilerplate(content templ.Component, viewClass string){
 <main>
 	<nav class={viewClass}>
 		<a class="" href="/">~</a>
-		<a href="/about">about</a>
+		<a href="/about/index.html">about</a>
 		<a href="/resume">hire me 😳</a>
 		<a href="/projects">projects</a>
 		<a class="" href="/mail">mail list</a>
 		<a href="/blog">blog</a>
 	</nav>
 
-	<body class={viewClass}>
+	<div class={viewClass}>
 		<span>+-------------+</span>
         @content
 		<footer>
@@ -119,15 +122,13 @@ templ boilerplate(content templ.Component, viewClass string){
 				<a class="" href="https://yoush.itch.io/" target="_blank">itch.io</a>
 				<a class="" href="/rss">rss</a>
 			</div>
-			<footer />
 		</footer>
-    </body>
+    </div>
 </main>
 </html>
 }
 
 templ homeContent(){
-
 <script>
 const gif_tuple = [["https://media1.tenor.com/m/MZRbDClAvOgAAAAC/capybara-bath.gif","capybara"],["https://img.itch.zone/aW1nLzEzNjI4MjU0LnBuZw==/original/11RCpN.png","There is no gif. Play Void Stranger."],["https://64.media.tumblr.com/f2d0490d0300ce46a1e7a7f15dc74165/tumblr_nbbb83YqbU1swqiquo1_500.gif","Get 8 hours of sleep"],["https://media.tenor.com/WkI4kRS7eqMAAAAM/broly-dbz-fanmade.gif","mfw 8 hours of sleep"],["https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMHh5NGlvdWhrZDZqY3Q4dHhmdGF0MGEzYXNyM3M2NDNlaXc4bWZ1dyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ZIIyYOR6vXTGeEXTZu/giphy.gif","Check out the site's colour themes."]]
 let gif_number = Math.floor(Math.random() * gif_tuple.length)
@@ -164,3 +165,54 @@ New Graduate (or internship I guess) roles for Winter or Summer 2026.
 </div>
 }
 
+templ aboutContent(){
+
+<title>About</title>
+<meta property="og:title" content="About">
+
+<h1> ~/about_me </h1> 
+
+<img class="about-img" src="../img/mm.png" alt="">
+<br>
+<a class="source" href="https://www.instagram.com/apple_toast/?hl=en" target="_blank">mercury man commission by @apple_toast</a>
+<br>
+<br>
+
+I'm Jayden, a computer science student at York University.
+I'm a certified Digital Doohickey Maker to some, Software Engineer to others.
+
+I've been in love with programming and creating with computers since modifying old Nintendo games and consoles with fan-made hacking tools (don't look for my old starmen.net account, my Earthbound hacks were very bad).
+
+I got my start proper with using Gamemaker 8.1 in grade 10 to make simple games, and that's when my interest in programming really began.
+
+Since then I've founded York's game development club ([gdyu.club](https://www.gdyu.club/)), learned full-stack development, got good at OOP, and have experience with many different tools and languages, and professional internship experience at companies like Scotiabank and Google (see my [resume!!](/resume)).
+
+I'm a fan of programming and creating things in many forms, and am always looking for opportunities to use code to make interesting, expressive, artistic, and cool stuff.
+
+//When I'm not working or running my club, you can find me <a class="hobby-anchor" href="javascript:;" on:click={next_hobby}>{current_hobby}.</a>
+
+}
+
+
+templ resumeContent(){
+
+<title>Resume</title>
+<meta property="og:title" content="Resume">
+
+<style>
+    .resume-frame{
+    width:70vw;
+    max-width:640px;
+    height:85vh;
+    max-height:800px;
+    }
+
+</style>
+
+<h1> ~/resume </h1> 
+
+<p>a pdf copy can be found [here](https://drive.google.com/file/d/1A-JDGpGSF8L1QGlRkcnYKbyuZ8CKVL3y/view?usp=sharing)</p>
+
+<iframe src="https://drive.google.com/file/d/1A-JDGpGSF8L1QGlRkcnYKbyuZ8CKVL3y/preview" class="resume-frame" allow="autoplay"></iframe>
+
+}
