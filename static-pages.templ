@@ -86,7 +86,7 @@ templ boilerplate(content templ.Component, viewClass string, pathToRoot string){
 
 
 <main>
-	<nav class={viewClass + "navbar"}>
+	<nav class={viewClass + " navbar"}>
 		<a class="" href="/index.html">~</a>
 		<a href="/about/index.html">about</a>
 		<a href="/resume/index.html">hire me 😳</a>
@@ -96,7 +96,7 @@ templ boilerplate(content templ.Component, viewClass string, pathToRoot string){
 		<a id="theme" onclick="change_theme()" >theme</a>
 	</nav>
 
-	<div class={viewClass + "content-wrapper"}>
+	<div class={viewClass + " content-wrapper"}>
 		<span>+-------------+</span>
         @content
 		<footer class="footer-links">

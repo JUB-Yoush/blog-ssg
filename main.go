@@ -29,12 +29,13 @@ index
 */
 
 type Post struct {
-	id    string
-	title string
-	tags  []string
-	date  time.Time
-	rawMd bytes.Buffer
-	html  templ.Component
+	id        string
+	title     string
+	permaLink string
+	tags      []string
+	date      time.Time
+	rawMd     bytes.Buffer
+	html      templ.Component
 }
 
 func mdToHtml(html string) templ.Component {
@@ -86,6 +87,7 @@ func parseMarkdownPosts() (posts []*Post) {
 		}
 		post.rawMd = buf
 		post.html = mdToHtml(post.rawMd.String())
+		post.permaLink = path.Join(post.date.Format("2006/01/02"), slug.Make(post.title), "/")
 
 		posts = append(posts, &post)
 	}
@@ -124,12 +126,13 @@ func main() {
 			log.Fatalf("failed to create output file: %v", err)
 		}
 
-		err = contentPage(post).Render(context.Background(), f)
+		err = boilerplate(contentPage(post), "blog", "../../../../../").Render(context.Background(), f)
 
 		if err != nil {
 			log.Fatalf("failed to write output file: %v", err)
 		}
 	}
+
 	// TODO this could be automated somewhat
 	name := path.Join(rootPath, "index.html")
 	f, err := os.Create(name)
@@ -182,10 +185,10 @@ func main() {
 		log.Fatalf("failed to create output file: %v", err)
 	}
 
-	// blogpage
+	// BLOGPOSTS
 	name = path.Join(blogPath, "index.html")
 	f, err = os.Create(name)
-	err = indexPage(posts).Render(context.Background(), f)
+	err = boilerplate(indexPage(posts), "", "../").Render(context.Background(), f)
 	if err != nil {
 		log.Fatalf("failed to create output file: %v", err)
 	}
