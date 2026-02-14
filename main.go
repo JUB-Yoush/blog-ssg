@@ -160,6 +160,18 @@ func main() {
 		log.Fatalf("failed to create output file: %v", err)
 	}
 
+	if err := os.Mkdir("public/mail", 0755); err != nil {
+		log.Fatalf("failed to create output directory: %v", err)
+	}
+
+	name = path.Join(rootPath, "mail", "index.html")
+	f, err = os.Create(name)
+	err = boilerplate(mailContent(), "", "../").Render(context.Background(), f)
+	if err != nil {
+		log.Fatalf("failed to create output file: %v", err)
+	}
+
+	// blogpage
 	name = path.Join(blogPath, "index.html")
 	f, err = os.Create(name)
 	err = indexPage(posts).Render(context.Background(), f)
