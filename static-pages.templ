@@ -122,7 +122,7 @@ templ homeContent(){
     height: 20vw;
     max-height: 250px;
     min-height: 150px;
-    width: auto;
+    width: fit-content;
 
 }
 
@@ -136,19 +136,14 @@ templ homeContent(){
 }
 </style>
 
-<script>
-const gif_tuple = [["https://media1.tenor.com/m/MZRbDClAvOgAAAAC/capybara-bath.gif","capybara"],["https://img.itch.zone/aW1nLzEzNjI4MjU0LnBuZw==/original/11RCpN.png","There is no gif. Play Void Stranger."],["https://64.media.tumblr.com/f2d0490d0300ce46a1e7a7f15dc74165/tumblr_nbbb83YqbU1swqiquo1_500.gif","Get 8 hours of sleep"],["https://media.tenor.com/WkI4kRS7eqMAAAAM/broly-dbz-fanmade.gif","mfw 8 hours of sleep"],["https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMHh5NGlvdWhrZDZqY3Q4dHhmdGF0MGEzYXNyM3M2NDNlaXc4bWZ1dyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ZIIyYOR6vXTGeEXTZu/giphy.gif","Check out the site's colour themes."]]
-let gif_number = Math.floor(Math.random() * gif_tuple.length)
-
-</script>
-
-
 <title>Jaydenpb dot net</title>
 <meta property="og:title" content="Jaydenpb dot net">
 
 <h1>/jaydenpb.net</h1> 
 
+<img id="home_gif_id" class="home_gif" src="" alt="">
 <br>
+<a id="gif_caption" class="gif-changer" href="javascript:;" onclick="change_gif()">gif_caption</a>
 
 <br>
 <br>
@@ -170,6 +165,7 @@ Hi
 </p>
 New Graduate (or internship I guess) roles for Winter or Summer 2026.
 </div>
+<script src="js/home.js"></script>
 }
 
 templ aboutContent(){
